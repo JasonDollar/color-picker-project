@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Navbar from './Navbar'
+import PaletteFooter from './PaletteFooter'
 
 import ColorBox from './ColorBox'
 
@@ -12,19 +13,6 @@ const PaletteDiv = styled.div`
   }
 `
 
-const Footer = styled.footer`
-  background: #eee;
-  height: 4vh;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  font-weight: bold;
-
-  & .emoji {
-    font-size: 1.5rem;
-    margin: 0 1rem;
-  }
-`
 
 
 const Palette = ({ palette }) => {
@@ -49,10 +37,7 @@ const Palette = ({ palette }) => {
           />
         ))}
       </div>
-      <Footer>
-        {palette.paletteName}
-        <span className="emoji">{palette.emoji}</span>
-      </Footer>
+      <PaletteFooter paletteName={palette.paletteName} emoij={palette.emoji} />
     </PaletteDiv>
   )
 }

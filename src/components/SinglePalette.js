@@ -2,18 +2,20 @@ import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import ColorBox from './ColorBox'
+import Navbar from './Navbar'
+import PaletteFooter from './PaletteFooter'
 
 const Container = styled.div`
-  min-height: 100vh;
+  height: 100vh;
 
   .colors {
-    height: 90vh;
+    height: 82vh;
   }
 `
 
 
 const SinglePalette = ({ palette, colorId }) => {
-  console.log(palette)
+  const [format, setFormat] = useState('hex')
   
   const gatherShades = (paletteArr, colorToFilterBy) => {
     let shades = []
@@ -30,13 +32,15 @@ const SinglePalette = ({ palette, colorId }) => {
   console.log(colors)
   return (
     <Container>
+      <Navbar format={format} handleSelectChange={e => setFormat(e.target.value)} showingAllColors={false} />
       <h2>Single Color Palette</h2>
       <div className="colors">
 
         {colors.map(item => (
-          <ColorBox key={item.id + item.hex} id={item.id} name={item.name} background={item.hex} showLink={false} />
+          <ColorBox key={item.id + item.hex} id={item.id} name={item.name} background={item[format]} showLink={false} />
         ))}
       </div>
+      <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </Container>
   )
 }

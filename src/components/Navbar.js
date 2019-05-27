@@ -65,26 +65,29 @@ const SliderContainer = styled.div`
 `
 
 const Navbar = ({
-  level, changeSliderLevel, handleSelectChange, format, 
+  level, changeSliderLevel, handleSelectChange, format, showingAllColors,
 }) => { 
+  console.log(format)
   const [openSnackbar, toggleOpenSnackbar] = useState(false)
   return (
     <Header>
       <div className="logo">
         <Link to="/">reactcolorpicker</Link>
       </div>
-      <div className="slider-container">
-        <span>Level: {level}</span>
-        <SliderContainer>
-        <Slider 
-          defaultValue={level}
-          min={100}
-          max={900}
-          onAfterChange={changeSliderLevel}
-          step={100}
-        />
-        </SliderContainer>
-      </div>
+      {showingAllColors && (
+        <div className="slider-container">
+          <span>Level: {level}</span>
+          <SliderContainer>
+          <Slider 
+            defaultValue={level}
+            min={100}
+            max={900}
+            onAfterChange={changeSliderLevel}
+            step={100}
+          />
+          </SliderContainer>
+        </div>
+      )}
       <div value={format} className="select-container">
         <Select onChange={e => {
           handleSelectChange(e)
@@ -118,8 +121,15 @@ const Navbar = ({
 export default Navbar
 
 Navbar.propTypes = {
-  level: PropTypes.number.isRequired,
-  changeSliderLevel: PropTypes.func.isRequired,
+  level: PropTypes.number,
+  changeSliderLevel: PropTypes.func,
   handleSelectChange: PropTypes.func.isRequired,
   format: PropTypes.string.isRequired,
+  showingAllColors: PropTypes.bool,
+}
+
+Navbar.defaultProps = {
+  showingAllColors: true,
+  level: 500,
+  changeSliderLevel: null,
 }
