@@ -43,9 +43,11 @@ const SliderContainer = styled.div`
 
   .rc-slider-track {
     background: transparent;
+    margin-left: 7px;
   }
   .rc-slider-rail {
     height: 8px;
+    margin-left: 7px;
   }
   .rc-slider-handle,
   .rc-slider-handle:active, 

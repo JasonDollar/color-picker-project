@@ -40,7 +40,13 @@ const Palette = ({ palette }) => {
       <Navbar changeSliderLevel={changeSliderLevel} level={level} handleSelectChange={e => setFormat(e.target.value)} format={format} />
       <div className="Palette-colors">
         {palette.colors[level].map(item => (
-          <ColorBox key={item.id} background={item[format]} name={item.name} />
+          <ColorBox 
+            key={item.id}
+            id={item.id}
+            paletteId={palette.id}
+            background={item[format]}
+            name={item.name}
+          />
         ))}
       </div>
       <Footer>

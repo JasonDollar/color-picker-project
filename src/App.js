@@ -4,6 +4,7 @@ import { Route, Switch, Redirect } from 'react-router-dom'
 import seedColors from './seedColors'
 import PaletteList from './components/PaletteList'
 import Palette from './components/Palette'
+import SinglePalette from './components/SinglePalette'
 import { generatePalette } from './colorHelpers'
 
 const AppContainer = styled.div`
@@ -21,8 +22,8 @@ function App() {
     <AppContainer>
       <Switch>
         <Route path="/" exact render={props => <PaletteList {...props} palettes={seedColors} />} />
-        <Route path="/palette/:paletteId" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.paletteId))} />} />
-
+        <Route path="/palette/:id" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.id))} />} />
+        <Route path="/palette/:paletteId/:colorId" render={props => <SinglePalette />} />
       </Switch>
       
     </AppContainer>
