@@ -1,69 +1,36 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
+
 import styled from 'styled-components'
+
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import PropTypes from 'prop-types'
+import './ColorBox.css'
 
-
-const ColorBoxDiv = styled.div`
-  width: 20%;
-  height: 25%;
-  margin: 0 auto;
-  display: inline-block;
-  position: relative;
-  cursor: pointer;
-  margin-bottom: -4px;
-  .copy-button {
-  width: 100px;
-  height: 30px;
-  position: absolute;
-  display: inline-block;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  outline: none;
-  background: rgba(255,255,255,.3);
-  font-size: 1rem;
-  line-height: 30px;
-  text-transform: uppercase;
-  border: none;
-  opacity: 0;
-}
-.ColorBox:hover .copy-button {
-  opacity: 1;
-  transition: opacity .3s;
-}
-.box-content {
-  position: absolute;
-  padding: 10px;
-  width: 100%;
-  left: 0;
-  bottom: 0;
-  color: black;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-size: 12px;
-}
-.see-more {
-  background: rgba(255,255,255,.3);
-  position: absolute;
-  border: none;
-  right: 0;
-  bottom: 0;
-  color: white;
-  width: 60px;
-  height: 30px;
-  text-align: center;
-  line-height: 30px;
-  text-transform: uppercase;
-}
-`
 
 
 const ColorBox = ({ background, name }) => {
+  const [copied, setCopied] = useState(false)
+
+  const changeCopyState = () => {
+    console.log(copied)
+    setCopied(true)
+    console.log(copied)
+  }
+
+  useEffect(() => {
+    console.log(copied)
+    if (copied === true) {
+      setTimeout(() => setCopied(false), 1500)
+    }
+  }, [copied])
   return (
-    <CopyToClipboard text={background}>
-      <ColorBoxDiv className="ColorBox" style={{ background }}>
+    <CopyToClipboard text={background} onCopy={changeCopyState}>
+    <div className="ColorBox" style={{ background }}>
+      <div style={{ background }} className={` copy-overlay ${copied && 'show'}`} />
+      <div className={`copy-message ${copied && 'show'}`}>
+        <h1>copied!</h1>
+        <p>{background}</p>
+      </div>
         <div className="copy-container">
           <div className="box-content">
             <span>{name}</span>
@@ -72,7 +39,7 @@ const ColorBox = ({ background, name }) => {
           <button type="button" className="copy-button">Copy</button>
         </div>
         <span className="see-more">MORE</span>
-      </ColorBoxDiv>
+    </div>
 
     </CopyToClipboard>
   )
