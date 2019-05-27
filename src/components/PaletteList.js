@@ -35,7 +35,8 @@ const PaletteListRoot = styled.div`
 `
 
 
-const PaletteList = ({ palettes }) => {
+const PaletteList = ({ palettes, ...props }) => {
+  const goToPalette = id => props.history.push(`/palette/${id}`)
   return (
     <PaletteListRoot>
       <div className="container">
@@ -44,9 +45,7 @@ const PaletteList = ({ palettes }) => {
         </nav>
         <div className="palettes">
           {palettes.map(item => (
-            <Link key={item.id} to={`palette/${item.id}`}>
-              <MiniPalette {...item} />
-            </Link>
+            <MiniPalette key={item.id} {...item} handleClick={goToPalette} />
           ))}
 
         </div>

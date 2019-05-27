@@ -52,13 +52,13 @@ const MiniColor = styled.div`
 `
 
 const MiniPalette = ({ 
-  id, emoji, colors, paletteName, 
+  id, emoji, colors, paletteName, handleClick,
 }) => {
   const miniColorBoxes = colors.map(item => (
     console.log(item.color) || <MiniColor key={item.name} background={item.color} />
   ))
   return (
-    <MiniPaletteContainer>
+    <MiniPaletteContainer onClick={() => handleClick(id)}>
       <div className="colors">
         {miniColorBoxes}
       </div>
@@ -77,4 +77,5 @@ MiniPalette.propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string.isRequired,
   })).isRequired,
+  handleClick: PropTypes.func.isRequired,
 }
