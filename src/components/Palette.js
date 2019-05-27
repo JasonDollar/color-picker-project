@@ -12,6 +12,20 @@ const PaletteDiv = styled.div`
   }
 `
 
+const Footer = styled.footer`
+  background: #eee;
+  height: 4vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  font-weight: bold;
+
+  & .emoji {
+    font-size: 1.5rem;
+    margin: 0 1rem;
+  }
+`
+
 
 const Palette = ({ palette }) => {
   const [level, setLevel] = useState(500)
@@ -26,9 +40,13 @@ const Palette = ({ palette }) => {
       <Navbar changeSliderLevel={changeSliderLevel} level={level} handleSelectChange={e => setFormat(e.target.value)} format={format} />
       <div className="Palette-colors">
         {palette.colors[level].map(item => (
-          <ColorBox key={item.name + 'key'} background={item[format]} name={item.name} />
+          <ColorBox key={item.id} background={item[format]} name={item.name} />
         ))}
       </div>
+      <Footer>
+        {palette.paletteName}
+        <span className="emoji">{palette.emoji}</span>
+      </Footer>
     </PaletteDiv>
   )
 }

@@ -12,7 +12,7 @@ const AppContainer = styled.div`
 function App() {
   return (
     <AppContainer>
-      <Palette palette={generatePalette(seedColors[5])} />
+      <Palette palette={generatePalette(seedColors[0])} />
     </AppContainer>
   )
 }
