@@ -23,7 +23,7 @@ function App() {
       <Switch>
         <Route path="/" exact render={props => <PaletteList {...props} palettes={seedColors} />} />
         <Route path="/palette/:id" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.id))} />} />
-        <Route path="/palette/:paletteId/:colorId" render={props => <SinglePalette />} />
+        <Route path="/palette/:paletteId/:colorId" render={props => <SinglePalette {...props} palette={generatePalette(findPalette(props.match.params.paletteId))} colorId={props.match.params.colorId} />} />
       </Switch>
       
     </AppContainer>

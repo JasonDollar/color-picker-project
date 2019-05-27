@@ -7,7 +7,7 @@ import './ColorBox.css'
 
 
 const ColorBox = ({
-  background, name, id, paletteId, 
+  background, name, id, paletteId, showLink,
 }) => {
   const [copied, setCopied] = useState(false)
 
@@ -36,9 +36,11 @@ const ColorBox = ({
           </div>
           <button type="button" className="copy-button">Copy</button>
         </div>
+        {showLink && (
         <Link to={`/palette/${paletteId}/${id}`} onClick={e => e.stopPropagation()}>
           <span className="see-more">MORE</span>
         </Link>
+        )}
     </div>
 
     </CopyToClipboard>
@@ -51,5 +53,10 @@ ColorBox.propTypes = {
   background: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   id: PropTypes.string.isRequired,
-  paletteId: PropTypes.string.isRequired,
+  paletteId: PropTypes.string,
+  showLink: PropTypes.bool,
+}
+ColorBox.defaultProps = {
+  showLink: true,
+  paletteId: '',
 }
