@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import { Route, Switch, Redirect } from 'react-router-dom'
 import seedColors from './seedColors'
 import Palette from './components/Palette'
 import { generatePalette } from './colorHelpers'
@@ -10,9 +11,19 @@ const AppContainer = styled.div`
 `
 
 function App() {
+  const findPalette = id => {
+    const palette = seedColors.find(item => item.id === id)
+    console.log(palette)
+    return palette
+  }
   return (
     <AppContainer>
-      <Palette palette={generatePalette(seedColors[0])} />
+      <Switch>
+        <Route path="/" exact render={() => <Redirect to="palette/material-ui-colors" />} />
+        <Route path="/palette/:paletteId" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.paletteId))} />} />
+
+      </Switch>
+      
     </AppContainer>
   )
 }
