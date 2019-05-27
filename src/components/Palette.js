@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import PropTypes from 'prop-types'
+import Navbar from './Navbar'
 
 import ColorBox from './ColorBox'
 
@@ -11,12 +12,19 @@ const PaletteDiv = styled.div`
   }
 `
 
+
 const Palette = ({ palette }) => {
+  const [level, setLevel] = useState(500)
+
+  const changeSliderLevel = newLevel => {
+    setLevel(newLevel)
+  }
   return (
     <PaletteDiv className="Palette">
+      <Navbar changeSliderLevel={changeSliderLevel} level={level} />
       <div className="Palette-colors">
-        {palette.colors.map(item => (
-          <ColorBox key={item.name} background={item.color} name={item.name} />
+        {palette.colors[level].map(item => (
+          <ColorBox key={item.color} background={item.hex} name={item.name} />
         ))}
       </div>
     </PaletteDiv>
