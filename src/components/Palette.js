@@ -14,17 +14,20 @@ const PaletteDiv = styled.div`
 
 
 const Palette = ({ palette }) => {
+  console.log(palette)
   const [level, setLevel] = useState(500)
+  const [format, setFormat] = useState('hex')
 
   const changeSliderLevel = newLevel => {
     setLevel(newLevel)
   }
+
   return (
     <PaletteDiv className="Palette">
-      <Navbar changeSliderLevel={changeSliderLevel} level={level} />
+      <Navbar changeSliderLevel={changeSliderLevel} level={level} handleSelectChange={e => setFormat(e.target.value)} format={format} />
       <div className="Palette-colors">
         {palette.colors[level].map(item => (
-          <ColorBox key={item.color} background={item.hex} name={item.name} />
+          <ColorBox key={item.name + 'key'} background={item[format]} name={item.name} />
         ))}
       </div>
     </PaletteDiv>
@@ -38,9 +41,13 @@ Palette.propTypes = {
     paletteName: PropTypes.string,
     id: PropTypes.string,
     emoji: PropTypes.string,
-    colors: PropTypes.arrayOf(PropTypes.shape({
+    colors: PropTypes.objectOf(PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string,
       color: PropTypes.string,
-    })),
+      hex: PropTypes.string,
+      rgb: PropTypes.string,
+      rgba: PropTypes.string,
+    }))),
   }).isRequired,
 }
+

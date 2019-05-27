@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-
+import Select from '@material-ui/core/Select'
+import MenuItem from '@material-ui/core/MenuItem'
 import styled from 'styled-components'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
@@ -53,7 +54,9 @@ const SliderContainer = styled.div`
 
 `
 
-const Navbar = ({ level, changeSliderLevel }) => { 
+const Navbar = ({
+  level, changeSliderLevel, handleSelectChange, format, 
+}) => { 
   return (
     <Header>
       <div className="logo">
@@ -71,7 +74,13 @@ const Navbar = ({ level, changeSliderLevel }) => {
         />
         </SliderContainer>
       </div>
-
+      <div value={format} className="select-container">
+        <Select onChange={handleSelectChange}>
+          <MenuItem value="hex">HEX - #ffffff</MenuItem>
+          <MenuItem value="rgb">RGB - rgb(255, 255, 255) </MenuItem>
+          <MenuItem value="rgba">RGBA - rgb(255, 255, 255, 1.0) </MenuItem>
+        </Select>
+      </div>
     </Header>
   ) 
 }
@@ -81,4 +90,6 @@ export default Navbar
 Navbar.propTypes = {
   level: PropTypes.number.isRequired,
   changeSliderLevel: PropTypes.func.isRequired,
+  handleSelectChange: PropTypes.func.isRequired,
+  format: PropTypes.string.isRequired,
 }
