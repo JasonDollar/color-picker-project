@@ -1,19 +1,57 @@
 import React from 'react'
+import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import MiniPalette from './MiniPalette'
 
+const PaletteListRoot = styled.div`
+  background-color: blue;
+  height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  & .container {
+    width: 50%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
+  & .nav {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    color: white;
+  }
+
+  & .palettes {
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 30%);
+    gap: 5%;
+  }
+`
+
 
 const PaletteList = ({ palettes }) => {
   return (
-    <div>
-      <h1>React Colors</h1>
-      {palettes.map(item => (
-        <Link key={item.id} to={`palette/${item.id}`}>
-          <MiniPalette {...item} />
-        </Link>
-      ))}
-    </div>
+    <PaletteListRoot>
+      <div className="container">
+        <nav className="nav">
+          <h1>React Colors</h1>
+        </nav>
+        <div className="palettes">
+          {palettes.map(item => (
+            <Link key={item.id} to={`palette/${item.id}`}>
+              <MiniPalette {...item} />
+            </Link>
+          ))}
+
+        </div>
+      </div>
+    </PaletteListRoot>
   )
 }
 

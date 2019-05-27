@@ -14,7 +14,14 @@ const MiniPaletteContainer = styled.div`
   }
 
   & .colors {
-    background: forestgreen;
+    background-color: #dae1e4;
+    height: 150px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: repeat(4, 25%);
+    border-radius: 5px;
+    overflow: hidden;
   }
 
   & .title {
@@ -32,15 +39,28 @@ const MiniPaletteContainer = styled.div`
     margin-left: .5rem;
     font-size: 1.5rem;
   }
+
+`
+
+const MiniColor = styled.div`
+  height: 100%;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  /* margin-bottom: -3.5px; */
+  background: ${props => props.background};
 `
 
 const MiniPalette = ({ 
   id, emoji, colors, paletteName, 
 }) => {
+  const miniColorBoxes = colors.map(item => (
+    console.log(item.color) || <MiniColor key={item.name} background={item.color} />
+  ))
   return (
     <MiniPaletteContainer>
       <div className="colors">
-        s
+        {miniColorBoxes}
       </div>
       <h5 className="title">{paletteName} <span className="emoji">{emoji}</span>  </h5>
     </MiniPaletteContainer>
