@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { 
   Select, MenuItem, Snackbar, IconButton, 
@@ -68,7 +69,7 @@ const Navbar = ({
   return (
     <Header>
       <div className="logo">
-        <a href="#">reactcolorpicker</a>
+        <Link to="/">reactcolorpicker</Link>
       </div>
       <div className="slider-container">
         <span>Level: {level}</span>

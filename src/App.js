@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import seedColors from './seedColors'
+import PaletteList from './components/PaletteList'
 import Palette from './components/Palette'
 import { generatePalette } from './colorHelpers'
 
@@ -19,7 +20,7 @@ function App() {
   return (
     <AppContainer>
       <Switch>
-        <Route path="/" exact render={() => <Redirect to="palette/material-ui-colors" />} />
+        <Route path="/" exact render={props => <PaletteList {...props} palettes={seedColors} />} />
         <Route path="/palette/:paletteId" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.paletteId))} />} />
 
       </Switch>
