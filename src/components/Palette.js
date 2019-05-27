@@ -14,7 +14,6 @@ const PaletteDiv = styled.div`
 
 
 const Palette = ({ palette }) => {
-  console.log(palette)
   const [level, setLevel] = useState(500)
   const [format, setFormat] = useState('hex')
 
@@ -36,7 +35,7 @@ const Palette = ({ palette }) => {
 
 export default Palette
 
-Palette.propTypes = {
+Palette.propTypes = { 
   palette: PropTypes.shape({
     paletteName: PropTypes.string,
     id: PropTypes.string,

@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
+import { 
+  Select, MenuItem, Snackbar, IconButton, 
+} from '@material-ui/core'
+import CloseIcon from '@material-ui/icons/Close'
 import styled from 'styled-components'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
@@ -26,6 +28,11 @@ const Header = styled.header`
       text-decoration: none;
       color: black;
     }
+  }
+
+  .select-container {
+    margin-left: auto;
+    margin-right: 1rem;
   }
 `
 const SliderContainer = styled.div`
@@ -57,6 +64,7 @@ const SliderContainer = styled.div`
 const Navbar = ({
   level, changeSliderLevel, handleSelectChange, format, 
 }) => { 
+  const [openSnackbar, toggleOpenSnackbar] = useState(false)
   return (
     <Header>
       <div className="logo">
@@ -75,12 +83,31 @@ const Navbar = ({
         </SliderContainer>
       </div>
       <div value={format} className="select-container">
-        <Select onChange={handleSelectChange}>
+        <Select onChange={e => {
+          handleSelectChange(e)
+          toggleOpenSnackbar(true)
+        }}
+        >
           <MenuItem value="hex">HEX - #ffffff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255, 255, 255) </MenuItem>
           <MenuItem value="rgba">RGBA - rgb(255, 255, 255, 1.0) </MenuItem>
         </Select>
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        open={openSnackbar}
+        autoHideDuration={3000}
+        message={<span id="message-id">Format Changed to {format.toUpperCase()}</span>}
+        ContentProps={{
+          'aria-describedby': 'message-id',
+        }}
+        onClose={() => toggleOpenSnackbar(false)}
+        action={[
+          <IconButton onClick={() => toggleOpenSnackbar(false)} color="inherit" key="close" aria-label="close">
+            <CloseIcon />
+          </IconButton>,
+        ]}
+      />
     </Header>
   ) 
 }
