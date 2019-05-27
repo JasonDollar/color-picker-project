@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import MiniPalette from './MiniPalette'
 
 
 const PaletteList = ({ palettes }) => {
@@ -9,7 +10,7 @@ const PaletteList = ({ palettes }) => {
       <h1>React Colors</h1>
       {palettes.map(item => (
         <Link key={item.id} to={`palette/${item.id}`}>
-          <h1>{item.paletteName}</h1>
+          <MiniPalette {...item} />
         </Link>
       ))}
     </div>
