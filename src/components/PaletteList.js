@@ -22,7 +22,12 @@ const PaletteListRoot = styled.div`
     display: flex;
     width: 100%;
     justify-content: space-between;
+    align-items: center;
     color: white;
+    & a {
+      /* text-decoration: none; */
+      color: white;
+    }
   }
 
   & .palettes {
@@ -42,6 +47,7 @@ const PaletteList = ({ palettes, ...props }) => {
       <div className="container">
         <nav className="nav">
           <h1>React Colors</h1>
+          <Link to="/palette/new">Create Palette</Link>
         </nav>
         <div className="palettes">
           {palettes.map(item => (

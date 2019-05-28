@@ -5,6 +5,7 @@ import seedColors from './seedColors'
 import PaletteList from './components/PaletteList'
 import Palette from './components/Palette'
 import SinglePalette from './components/SinglePalette'
+import NewPaletteForm from './components/NewPaletteForm'
 import { generatePalette } from './colorHelpers'
 
 const AppContainer = styled.div`
@@ -21,6 +22,7 @@ function App() {
   return (
     <AppContainer>
       <Switch>
+        <Route path="/palette/new" exact render={props => <NewPaletteForm {...props} />} />
         <Route path="/" exact render={props => <PaletteList {...props} palettes={seedColors} />} />
         <Route path="/palette/:id" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.id))} />} />
         <Route path="/palette/:paletteId/:colorId" render={props => <SinglePalette {...props} palette={generatePalette(findPalette(props.match.params.paletteId))} colorId={props.match.params.colorId} />} />
