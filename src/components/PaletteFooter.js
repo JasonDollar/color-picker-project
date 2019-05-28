@@ -30,5 +30,9 @@ export default PaletteFooter
 
 PaletteFooter.propTypes = {
   paletteName: PropTypes.string.isRequired,
-  emoji: PropTypes.string.isRequired,
+  emoji: PropTypes.string,
+}
+
+PaletteFooter.defaultProps = {
+  emoji: '',
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import ColorBox from './ColorBox'
 import Navbar from './Navbar'
@@ -11,6 +12,18 @@ const Container = styled.div`
   .colors {
     height: 82vh;
   }
+  .ColorBox {
+    height: 50%;
+  }
+  .ColorBox.go-back {
+    background: black;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
 `
 
 
@@ -34,11 +47,14 @@ const SinglePalette = ({ palette, colorId }) => {
     <Container>
       <Navbar format={format} handleSelectChange={e => setFormat(e.target.value)} showingAllColors={false} />
       <h2>Single Color Palette</h2>
-      <div className="colors">
+      <div className="colors SingleColorPalette">
 
         {colors.map(item => (
           <ColorBox key={item.id + item.hex} id={item.id} name={item.name} background={item[format]} showLink={false} />
         ))}
+        <div className="go-back ColorBox">
+          <Link to={`/palette/${palette.id}`} className="back-button">Go back</Link>
+        </div>
       </div>
       <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </Container>

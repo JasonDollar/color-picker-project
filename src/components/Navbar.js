@@ -67,7 +67,6 @@ const SliderContainer = styled.div`
 const Navbar = ({
   level, changeSliderLevel, handleSelectChange, format, showingAllColors,
 }) => { 
-  console.log(format)
   const [openSnackbar, toggleOpenSnackbar] = useState(false)
   return (
     <Header>
