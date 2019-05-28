@@ -5,26 +5,7 @@ import styled from 'styled-components'
 import ColorBox from './ColorBox'
 import Navbar from './Navbar'
 import PaletteFooter from './PaletteFooter'
-
-const Container = styled.div`
-  height: 100vh;
-
-  .colors {
-    height: 82vh;
-  }
-  .ColorBox {
-    height: 50%;
-  }
-  .ColorBox.go-back {
-    background: black;
-  }
-
-  a {
-    text-decoration: none;
-    color: inherit;
-  }
-
-`
+import Container from './styles/PaletteStyles'
 
 
 const SinglePalette = ({ palette, colorId }) => {

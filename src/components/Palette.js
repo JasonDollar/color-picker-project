@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Navbar from './Navbar'
 import PaletteFooter from './PaletteFooter'
+import Container from './styles/PaletteStyles'
 
 import ColorBox from './ColorBox'
 
@@ -24,7 +25,7 @@ const Palette = ({ palette }) => {
   }
 
   return (
-    <PaletteDiv className="Palette">
+    <PaletteDiv>
       <Navbar changeSliderLevel={changeSliderLevel} level={level} handleSelectChange={e => setFormat(e.target.value)} format={format} />
       <div className="Palette-colors">
         {palette.colors[level].map(item => (
