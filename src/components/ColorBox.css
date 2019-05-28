@@ -48,6 +48,13 @@
   font-size: 12px;
 }
 
+.light-text {
+  color: white;
+}
+.dark-text {
+  color: #00000088 !important;
+}
+
 .see-more {
   background: rgba(255,255,255,.3);
   position: absolute;
@@ -62,22 +69,7 @@
   text-transform: uppercase;
 }
 
-.copy-overlay {
-  /* background: ${props => props.background}; */
-  opacity: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  transition: transform .5s ease-in-out;
-  transform: scale(.1);
-}
-.copy-overlay.show {
-  opacity: 1;
-  transform: scale(50);
-  z-index: 10;
-  position: absolute;
 
-}
 
 .copy-message {
   position: fixed;

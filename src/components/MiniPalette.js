@@ -54,7 +54,7 @@ const MiniPalette = ({
   id, emoji, colors, paletteName, handleClick,
 }) => {
   const miniColorBoxes = colors.map(item => (
-    console.log(item.color) || <MiniColor key={item.name} background={item.color} />
+    <MiniColor key={item.name} background={item.color} />
   ))
   return (
     <MiniPaletteContainer onClick={() => handleClick(id)}>
