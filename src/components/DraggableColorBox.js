@@ -15,10 +15,10 @@ const Container = styled.div`
   margin-bottom: -4px;
 `
 
-const DraggableColorBox = ({ color }) => {
+const DraggableColorBox = ({ color, name }) => {
   return (
     <Container background={color}>
-      {color}
+      {name}
     </Container>
   )
 }
@@ -27,4 +27,5 @@ export default DraggableColorBox
 
 DraggableColorBox.propTypes = {
   color: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 }
