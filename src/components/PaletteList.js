@@ -66,7 +66,7 @@ PaletteList.propTypes = {
   palettes: PropTypes.arrayOf(PropTypes.shape({
     paletteName: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired,
-    emoji: PropTypes.string.isRequired,
+    emoji: PropTypes.string,
     colors: PropTypes.arrayOf(PropTypes.shape({
       name: PropTypes.string.isRequired,
       color: PropTypes.string.isRequired,

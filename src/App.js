@@ -28,7 +28,17 @@ function App() {
   return (
     <AppContainer>
       <Switch>
-        <Route path="/palette/new" exact render={props => <NewPaletteForm {...props} savePalette={savePalette} />} />
+        <Route
+          path="/palette/new"
+          exact
+          render={props => (
+            <NewPaletteForm 
+              {...props}
+              savePalette={savePalette}
+              palettes={palettes}
+            />
+          )}
+        />
         <Route path="/" exact render={props => <PaletteList {...props} palettes={palettes} />} />
         <Route path="/palette/:id" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.id))} />} />
         <Route path="/palette/:paletteId/:colorId" render={props => <SinglePalette {...props} palette={generatePalette(findPalette(props.match.params.paletteId))} colorId={props.match.params.colorId} />} />
