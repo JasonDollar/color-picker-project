@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import seedColors from './seedColors'
@@ -14,16 +14,22 @@ const AppContainer = styled.div`
 `
 
 function App() {
+  const [palettes, setPalettes] = useState(seedColors)
   const findPalette = id => {
-    const palette = seedColors.find(item => item.id === id)
+    const palette = palettes.find(item => item.id === id)
     console.log(palette)
     return palette
+  }
+
+  const savePalette = newPalette => {
+    console.log(newPalette)
+    setPalettes([...palettes, newPalette])
   }
   return (
     <AppContainer>
       <Switch>
-        <Route path="/palette/new" exact render={props => <NewPaletteForm {...props} />} />
-        <Route path="/" exact render={props => <PaletteList {...props} palettes={seedColors} />} />
+        <Route path="/palette/new" exact render={props => <NewPaletteForm {...props} savePalette={savePalette} />} />
+        <Route path="/" exact render={props => <PaletteList {...props} palettes={palettes} />} />
         <Route path="/palette/:id" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.id))} />} />
         <Route path="/palette/:paletteId/:colorId" render={props => <SinglePalette {...props} palette={generatePalette(findPalette(props.match.params.paletteId))} colorId={props.match.params.colorId} />} />
       </Switch>

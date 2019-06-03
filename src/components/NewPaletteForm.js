@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
+
 import clsx from 'clsx'
 import { makeStyles, useTheme } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
@@ -84,7 +86,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-const NewPaletteForm = () => {
+const NewPaletteForm = ({ savePalette, ...props }) => {
   const classes = useStyles()
   const theme = useTheme()
   const [open, setOpen] = useState(false)
@@ -116,11 +118,24 @@ const NewPaletteForm = () => {
     setNewName('')
   }
 
+  const handleSubmit = () => {
+    let newPaletteName = 'New Test palette'
+    const newPalette = {
+      paletteName: newPaletteName,
+      id: newPaletteName.toLowerCase().replace(/ /g, '-'),
+      colors,
+    }
+
+    savePalette(newPalette)
+    props.history.push('/')
+  }
+  
   return (
     <div className={classes.root}>
       <CssBaseline />
       <AppBar
         position="fixed"
+        color="default"
         className={clsx(classes.appBar, {
           [classes.appBarShift]: open,
         })}
@@ -138,6 +153,7 @@ const NewPaletteForm = () => {
           <Typography variant="h6" noWrap>
             Persistent drawer
           </Typography>
+          <Button variant="contained" color="primary" onClick={handleSubmit}>Save Palette</Button>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -198,3 +214,7 @@ const NewPaletteForm = () => {
 }
 
 export default NewPaletteForm
+
+NewPaletteForm.propTypes = {
+  savePalette: PropTypes.func.isRequired,
+}

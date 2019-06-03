@@ -50,7 +50,7 @@ const PaletteList = ({ palettes, ...props }) => {
           <Link to="/palette/new">Create Palette</Link>
         </nav>
         <div className="palettes">
-          {palettes.map(item => (
+          {palettes && palettes.map(item => (
             <MiniPalette key={item.id} {...item} handleClick={goToPalette} />
           ))}
 
