@@ -13,7 +13,7 @@ const Container = styled.div`
   display: inline-block;
   position: relative;
   cursor: pointer;
-  margin-bottom: -4px;
+  margin-bottom: -6px;
 
   &:hover svg {
     color: white;
