@@ -42,7 +42,6 @@ const Container = styled.div`
 `
 
 const DraggableColorBox = ({ color, name, handleClick }) => {
-  console.log(color)
   return (
     <Container background={color}>
       <div className="boxContent">

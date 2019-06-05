@@ -13,7 +13,6 @@ const List = styled.ul`
 `
 
 const DraggableColorList = ({ colors, removeColor }) => {
-  console.log(colors)
   return (
     <List>
       {colors.map((item, i) => (
