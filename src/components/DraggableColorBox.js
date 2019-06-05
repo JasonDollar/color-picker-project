@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import { SortableElement } from 'react-sortable-hoc'
 import DeleteIcon from '@material-ui/icons/Delete'
 
 const Container = styled.div`
@@ -41,6 +42,7 @@ const Container = styled.div`
 `
 
 const DraggableColorBox = ({ color, name, handleClick }) => {
+  console.log(color)
   return (
     <Container background={color}>
       <div className="boxContent">
@@ -51,7 +53,7 @@ const DraggableColorBox = ({ color, name, handleClick }) => {
   )
 }
 
-export default DraggableColorBox
+export default SortableElement(DraggableColorBox)
 
 DraggableColorBox.propTypes = {
   color: PropTypes.string.isRequired,
