@@ -133,6 +133,11 @@ const NewPaletteForm = ({ savePalette, palettes, ...props }) => {
     savePalette(newPalette)
     props.history.push('/')
   }
+
+  const handleClick = colorName => {
+    const filteredColors = colors.filter(item => item.name !== colorName)
+    setColors(filteredColors)
+  }
   
   return (
     <div className={classes.root}>
@@ -206,7 +211,6 @@ const NewPaletteForm = ({ savePalette, palettes, ...props }) => {
             variant="contained"
             color="primary"
             style={{ background: currentColor }}
-            // onClick={addNewColor}
           >Add Color
           </Button>
         </ValidatorForm>
@@ -219,7 +223,7 @@ const NewPaletteForm = ({ savePalette, palettes, ...props }) => {
         <div className={classes.drawerHeader} />
         <ul className={classes.list}>
           {colors.map(item => (
-            <DraggableColorBox key={item.name + item.color} color={item.color} name={item.name} />
+            <DraggableColorBox key={item.name + item.color} color={item.color} name={item.name} handleClick={() => handleClick(item.name)} />
           ))}
         </ul>
       </main>
