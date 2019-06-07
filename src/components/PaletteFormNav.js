@@ -11,6 +11,7 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Button from '@material-ui/core/Button'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
+import PaletteMetaForm from './PaletteMetaForm'
 
 const drawerWidth = 340
 
@@ -81,17 +82,8 @@ const PaletteFormNav = ({
           </Typography>
         </Toolbar>
         <div className={classes.navBtns}>
-          <ValidatorForm onSubmit={handleSubmit}>
-
-            <TextValidator 
-              label="Palette Name"
-              value={newPaletteName}
-              onChange={e => setNewPaletteName(e.target.value)}
-              validators={['required', 'isPaletteNameUnique']}
-              errorMessages={['You must provide palette name', 'Palette name must be unique']}
-            />
-            <Button variant="contained" color="primary" type="submit">Save Palette</Button>
-          </ValidatorForm>
+          
+          <PaletteMetaForm handleSubmit={handleSubmit} newPaletteName={newPaletteName} setNewPaletteName={setNewPaletteName} />
           <Link to="/">
             <Button variant="contained" color="secondary">
               Go back
