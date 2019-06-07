@@ -13,6 +13,7 @@ import { ChromePicker } from 'react-color'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 import DraggableColorList from './DraggableColorList'
 import PaletteFormNav from './PaletteFormNav'
+import ColorPickerForm from './ColorPickerForm'
 
 const drawerWidth = 340
 
@@ -188,23 +189,14 @@ const NewPaletteForm = ({
           <Button variant="contained" color="primary" disabled={paletteIsFull} onClick={addRandomColor}>Random Color</Button>
 
         </div>
-        <ChromePicker color={currentColor} onChangeComplete={newColor => setCurrentColor(newColor.hex)} />
-        <ValidatorForm onSubmit={addNewColor}>
-          <TextValidator 
-            value={newColorName}
-            onChange={e => setNewColorName(e.target.value)}
-            validators={['required', 'isColorNameUnique', 'isColorUnique']}
-            errorMessages={['This field is required', 'Color name must be unique', 'Color already used']}
-          />
-          <Button 
-            type="submit"
-            variant="contained"
-            color="primary"
-            style={{ background: paletteIsFull ? 'grey' : currentColor }}
-            disabled={paletteIsFull}
-          >{paletteIsFull ? 'Palette Full' : 'Add Color'}
-          </Button>
-        </ValidatorForm>
+        <ColorPickerForm
+          currentColor={currentColor} 
+          setCurrentColor={setCurrentColor} 
+          addNewColor={addNewColor} 
+          newColorName={newColorName} 
+          setNewColorName={setNewColorName} 
+          paletteIsFull={paletteIsFull} 
+        />
       </Drawer>
       <main
         className={clsx(classes.content, {
