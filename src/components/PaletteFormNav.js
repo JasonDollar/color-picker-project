@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from 'react'
+import React, { useEffect, useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
@@ -26,6 +26,7 @@ const useStyles = makeStyles(theme => ({
     }),
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     height: '64px',
   },
   appBarShift: {
@@ -43,7 +44,13 @@ const useStyles = makeStyles(theme => ({
     display: 'none',
   },
   navBtns: {
-
+    marginRight: '1rem',
+    '& a': {
+      textDecoration: 'none',
+    },
+  },
+  button: {
+    margin: '0 0.5rem',
   },
 }))
 
@@ -51,6 +58,7 @@ const PaletteFormNav = ({
   open, handleDrawerOpen, handleSubmit, newPaletteName, setNewPaletteName, palettes,
 }) => {
   const classes = useStyles()
+  const [formShowing, toggleFormShowing] = useState(false)
   useEffect(() => {
 
     ValidatorForm.addValidationRule('isPaletteNameUnique', value => (
@@ -83,14 +91,17 @@ const PaletteFormNav = ({
         </Toolbar>
         <div className={classes.navBtns}>
           
-          <PaletteMetaForm handleSubmit={handleSubmit} newPaletteName={newPaletteName} setNewPaletteName={setNewPaletteName} />
           <Link to="/">
-            <Button variant="contained" color="secondary">
+            <Button className={classes.button} variant="contained" color="secondary">
               Go back
             </Button>
           </Link>
+          <Button className={classes.button} variant="outlined" color="primary" onClick={() => toggleFormShowing(true)}>
+            Save
+          </Button>
         </div>
       </AppBar>
+      {formShowing && <PaletteMetaForm handleSubmit={handleSubmit} newPaletteName={newPaletteName} setNewPaletteName={setNewPaletteName} formShowing={formShowing} toggleFormShowing={toggleFormShowing} />}
     </div>
   )
 }

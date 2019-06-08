@@ -10,49 +10,40 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 
 
-const PaletteMetaForm = ({ handleSubmit, newPaletteName, setNewPaletteName }) => {
-  const [open, setOpen] = useState(false)
-
-  function handleClickOpen() {
-    setOpen(true)
-  }
-
-  function handleClose() {
-    setOpen(false)
-  }
+const PaletteMetaForm = ({
+  handleSubmit, newPaletteName, setNewPaletteName, formShowing, toggleFormShowing, 
+}) => {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
-        Open form dialog
-      </Button>
-      <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here. We will send updates
-            occasionally.
-          </DialogContentText>
-          <ValidatorForm onSubmit={handleSubmit}>
+      
+      <Dialog open={formShowing} onClose={() => toggleFormShowing(false)} aria-labelledby="form-dialog-title">
+        <DialogTitle id="form-dialog-title">Choose a Pelette Name</DialogTitle>
+        <ValidatorForm onSubmit={handleSubmit}>
+          <DialogContent>
+            <DialogContentText>
+              Please enter a name for your new beautiful palette. Make sure it is unique.
+            </DialogContentText>
 
             <TextValidator 
               label="Palette Name"
               value={newPaletteName}
               onChange={e => setNewPaletteName(e.target.value)}
               validators={['required', 'isPaletteNameUnique']}
+              fullWidth
+              margin="normal"
               errorMessages={['You must provide palette name', 'Palette name must be unique']}
             />
-            <Button variant="contained" color="primary" type="submit">Save Palette</Button>
-          </ValidatorForm>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleClose} color="primary">
-            Subscribe
-          </Button>
-        </DialogActions>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => toggleFormShowing(false)} color="primary">
+              Cancel
+            </Button>
+            <Button type="submit" color="primary">
+              Save Palette
+            </Button>
+          </DialogActions>
+        </ValidatorForm>
       </Dialog>
     </div>
   )
@@ -64,4 +55,6 @@ PaletteMetaForm.propTypes = {
   setNewPaletteName: PropTypes.func.isRequired,
   handleSubmit: PropTypes.func.isRequired, 
   newPaletteName: PropTypes.string.isRequired,
+  formShowing: PropTypes.bool.isRequired,
+  toggleFormShowing: PropTypes.func.isRequired,
 }
