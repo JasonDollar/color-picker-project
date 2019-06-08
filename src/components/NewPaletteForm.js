@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react'
 import PropTypes from 'prop-types'
 import arrayMove from 'array-move'
 import clsx from 'clsx'
-import { makeStyles } from '@material-ui/core/styles'
 import Drawer from '@material-ui/core/Drawer'
 import Typography from '@material-ui/core/Typography'
 import Divider from '@material-ui/core/Divider'
@@ -13,77 +12,13 @@ import { ValidatorForm } from 'react-material-ui-form-validator'
 import DraggableColorList from './DraggableColorList'
 import PaletteFormNav from './PaletteFormNav'
 import ColorPickerForm from './ColorPickerForm'
+import NewPaletteFormStyles from './styles/NewPaletteFormStyles'
 
-const drawerWidth = 340
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-  },
-  
-  
-  drawer: {
-    width: drawerWidth,
-    flexShrink: 0,
-  },
-  drawerPaper: {
-    width: drawerWidth,
-    display: 'flex',
-    alignItems: 'center',
-  },
-  drawerHeader: {
-    display: 'flex',
-    alignItems: 'center',
-    padding: '0 8px',
-    ...theme.mixins.toolbar,
-    justifyContent: 'flex-end',
-  },
-  content: {
-    flexGrow: 1,
-    height: 'calc(100vh - 64px)',
-    padding: theme.spacing(3),
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    marginLeft: -drawerWidth,
-  },
-  contentShift: {
-    transition: theme.transitions.create('margin', {
-      easing: theme.transitions.easing.easeOut,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-    marginLeft: 0,
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-  input: {
-    display: 'none',
-  },
-  list: {
-    height: '100%',
-  },
-  container: {
-    width: '90%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttons: {
-    width: '100%',
-  },
-  actionButton: {
-    width: '50%',
-  },
-}))
 
 const NewPaletteForm = ({
   savePalette, palettes, maxColors = 20, ...props 
 }) => {
-  const classes = useStyles()
+  const classes = NewPaletteFormStyles()
   const [open, setOpen] = useState(false)
   const [currentColor, setCurrentColor] = useState('teal')
   const [colors, setColors] = useState(palettes[0].colors)
