@@ -23,7 +23,6 @@ const Palette = ({ palette }) => {
   const changeSliderLevel = newLevel => {
     setLevel(newLevel)
   }
-
   return (
     <PaletteDiv>
       <Navbar changeSliderLevel={changeSliderLevel} level={level} handleSelectChange={e => setFormat(e.target.value)} format={format} />
@@ -38,7 +37,7 @@ const Palette = ({ palette }) => {
           />
         ))}
       </div>
-      <PaletteFooter paletteName={palette.paletteName} emoij={palette.emoji} />
+      <PaletteFooter paletteName={palette.paletteName} emoji={palette.emoji} />
     </PaletteDiv>
   )
 }

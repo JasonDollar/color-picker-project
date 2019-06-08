@@ -123,11 +123,12 @@ const NewPaletteForm = ({
     setNewColorName('')
   }
 
-  const handleSubmit = () => {
+  const handleSubmit = emoji => {
     const newPalette = {
       paletteName: newPaletteName,
       id: newPaletteName.toLowerCase().replace(/ /g, '-'),
       colors,
+      emoji,
     }
 
     savePalette(newPalette)
