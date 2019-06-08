@@ -8,7 +8,8 @@ const ColorBoxContainer = styled.div`
   display: inline-block;
   position: relative;
   cursor: pointer;
-  margin-bottom: -4px;
+  /* margin-bottom: -4px; */
+  /* transform: scale(1.05); */
   background: ${props => props.background};
 
   .copy-button,
