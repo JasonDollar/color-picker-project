@@ -68,7 +68,7 @@ const MiniColor = styled.div`
 `
 
 const MiniPalette = ({ 
-  id, emoji, colors, paletteName, handleClick, deletePalette,
+  id, emoji, colors, paletteName, handleClick, openDialog,
 }) => {
   const miniColorBoxes = colors.map(item => (
     <MiniColor key={item.name} background={item.color} />
@@ -80,7 +80,7 @@ const MiniPalette = ({
         style={{ transition: 'all .2s ease-in-out' }}
         onClick={e => {
           e.stopPropagation()
-          deletePalette(id)
+          openDialog(id)
         }}
       />
       <div className="colors">
@@ -102,5 +102,5 @@ MiniPalette.propTypes = {
     color: PropTypes.string.isRequired,
   })).isRequired,
   handleClick: PropTypes.func.isRequired,
-  deletePalette: PropTypes.func.isRequired,
+  openDialog: PropTypes.func.isRequired,
 }
