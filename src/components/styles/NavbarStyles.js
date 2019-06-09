@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { mediaUp, mediaDown } from './sizes'
 
 export const Header = styled.header`
   display: flex;
@@ -15,6 +16,9 @@ export const Header = styled.header`
     height: 100%;
     display: flex;
     align-items: center;
+    ${mediaDown.xs`
+      display: none;
+    `}
 
     & a {
       text-decoration: none;
@@ -31,6 +35,9 @@ export const SliderContainer = styled.div`
   width: 340px;
   margin: 0 10px;
   display: inline-block;
+  ${mediaDown.md`
+    width: 150px;
+  `}
 
   .rc-slider-track {
     background: transparent;

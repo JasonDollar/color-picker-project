@@ -131,6 +131,9 @@ const ColorBoxContainer = styled.div`
     text-align: center;
     margin-bottom: 0;
     padding: 1rem;
+    ${mediaDown.xs`
+      font-size: 5rem;
+    `}
   }
   .copy-message p {
     font-size: 2rem;

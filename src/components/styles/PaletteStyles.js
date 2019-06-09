@@ -21,12 +21,13 @@ const Container = styled.div`
       height: 33.3333%;
     `}
     ${mediaDown.md`
+      width: 50%;
       height: 20%;
     `}
 
     ${mediaDown.sm`
       width: 100%;
-      height: 8%;
+      height: 10%;
     `}
   }
   .ColorBox.go-back {

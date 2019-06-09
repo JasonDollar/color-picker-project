@@ -31,13 +31,24 @@ const PaletteFormNavStyles = makeStyles(theme => ({
     display: 'none',
   },
   navBtns: {
-    marginRight: '1rem',
+    marginRight: '.5rem',
     '& a': {
       textDecoration: 'none',
+    },
+    '@media(max-width:576px)': {
+      marginRight: 0,
     },
   },
   button: {
     margin: '0 0.5rem',
+    '@media(max-width:576px)': {
+      margin: '0 2px',
+    },
+    '@media(max-width:407px)': {
+      fontSize: '.8rem',
+      margin: '0 2px',
+      padding: '2px 4px',
+    },
   },
 }))
 

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { SortableElement } from 'react-sortable-hoc'
 import DeleteIcon from '@material-ui/icons/Delete'
+import { mediaUp, mediaDown } from './styles/sizes'
 
 const Container = styled.div`
   background-color: ${props => props.background};
@@ -14,6 +15,18 @@ const Container = styled.div`
   position: relative;
   cursor: pointer;
   margin-bottom: -6px;
+  ${mediaDown.lg`
+    width: 25%;
+    height: 20%;
+  `}
+  ${mediaDown.md`
+    width: 50%;
+    height: 10%;
+  `}
+  ${mediaDown.sm`
+    width: 100%;
+    height: 7%;
+  `}
 
   &:hover svg {
     color: white;
