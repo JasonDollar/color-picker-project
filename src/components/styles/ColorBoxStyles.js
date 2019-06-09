@@ -1,16 +1,28 @@
 import chroma from 'chroma-js'
 import styled from 'styled-components'
+import { mediaUp, mediaDown } from './sizes'
 
 const ColorBoxContainer = styled.div`
   width: 20%;
   height: 25%;
-  margin: 0 auto;
-  display: inline-block;
+  /* margin: 0 auto; */
+  /* display: inline-block; */
   position: relative;
   cursor: pointer;
   /* margin-bottom: -4px; */
   /* transform: scale(1.05); */
   background: ${props => props.background};
+  ${mediaDown.lg`
+    width: 25%;
+    height: 20%;
+  `}
+  ${mediaDown.md`
+    width: 50%;
+  `}
+  ${mediaDown.sm`
+    width: 100%;
+    height: 10%;
+  `}
 
   .copy-button,
   .back-button {
@@ -99,6 +111,7 @@ const ColorBoxContainer = styled.div`
     transform: scale(0.1);
     color: white;
     opacity: 0;
+    margin: 0;
   }
 
   .copy-message.show {

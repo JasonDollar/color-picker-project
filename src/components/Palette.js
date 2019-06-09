@@ -11,6 +11,8 @@ const PaletteDiv = styled.div`
   height: 100vh;
   .Palette-colors {
     height: 90%;
+    display: flex;
+    flex-wrap: wrap;
   }
 `
 
