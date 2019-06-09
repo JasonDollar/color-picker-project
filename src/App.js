@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import { Route, Switch, Redirect } from 'react-router-dom'
 import seedColors from './seedColors'
@@ -15,16 +15,23 @@ const AppContainer = styled.div`
 `
 
 function App() {
-  const [palettes, setPalettes] = useState(seedColors)
+  const [palettes, setPalettes] = useState(() => JSON.parse(localStorage.getItem('palettes')) || seedColors)
+
+  useEffect(() => {
+    localStorage.setItem('palettes', JSON.stringify(palettes))
+  }, [palettes])
+
   const findPalette = id => {
     const palette = palettes.find(item => item.id === id)
-    console.log(palette)
     return palette
   }
 
   const savePalette = newPalette => {
-    console.log(newPalette)
     setPalettes([...palettes, newPalette])
+  }
+
+  const deletePalette = id => {
+    setPalettes(palettes.filter(item => item.id !== id))
   }
   return (
     <AppContainer>
@@ -40,7 +47,7 @@ function App() {
             />
           )}
         />
-        <Route path="/" exact render={props => <PaletteList {...props} palettes={palettes} />} />
+        <Route path="/" exact render={props => <PaletteList {...props} palettes={palettes} deletePalette={deletePalette} />} />
         <Route path="/palette/:id" exact render={props => <Palette {...props} palette={generatePalette(findPalette(props.match.params.id))} />} />
         <Route path="/palette/:paletteId/:colorId" render={props => <SinglePalette {...props} palette={generatePalette(findPalette(props.match.params.paletteId))} colorId={props.match.params.colorId} />} />
       </Switch>

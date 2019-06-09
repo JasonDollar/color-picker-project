@@ -40,7 +40,7 @@ const PaletteListRoot = styled.div`
 `
 
 
-const PaletteList = ({ palettes, ...props }) => {
+const PaletteList = ({ palettes, deletePalette, ...props }) => {
   const goToPalette = id => props.history.push(`/palette/${id}`)
   return (
     <PaletteListRoot>
@@ -51,7 +51,7 @@ const PaletteList = ({ palettes, ...props }) => {
         </nav>
         <div className="palettes">
           {palettes && palettes.map(item => (
-            <MiniPalette key={item.id} {...item} handleClick={goToPalette} />
+            <MiniPalette key={item.id} {...item} handleClick={goToPalette} deletePalette={deletePalette} />
           ))}
 
         </div>
@@ -72,4 +72,5 @@ PaletteList.propTypes = {
       color: PropTypes.string.isRequired,
     })).isRequired,
   })).isRequired,
+  deletePalette: PropTypes.func.isRequired,
 }

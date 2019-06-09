@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import DeleteIcon from '@material-ui/icons/Delete'
 
 const MiniPaletteContainer = styled.div`
   background: white;
@@ -8,9 +9,7 @@ const MiniPaletteContainer = styled.div`
   border-radius: 5px;
   padding: .5rem;
   position: relative;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 
   & .colors {
     background-color: #dae1e4;
@@ -39,6 +38,23 @@ const MiniPaletteContainer = styled.div`
     font-size: 1.5rem;
   }
 
+  & .deleteIcon {
+    color: white;
+    background-color: #eb3d30;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 10px;
+    z-index: 10;
+    opacity: 0;
+    /* transform: all .25s ease-in-out; */
+  }
+  &:hover .deleteIcon {
+    opacity: 1;
+  }
+
 `
 
 const MiniColor = styled.div`
@@ -51,13 +67,21 @@ const MiniColor = styled.div`
 `
 
 const MiniPalette = ({ 
-  id, emoji, colors, paletteName, handleClick,
+  id, emoji, colors, paletteName, handleClick, deletePalette,
 }) => {
   const miniColorBoxes = colors.map(item => (
     <MiniColor key={item.name} background={item.color} />
   ))
   return (
     <MiniPaletteContainer onClick={() => handleClick(id)}>
+      <DeleteIcon
+        className="deleteIcon"
+        style={{ transition: 'all .2s ease-in-out' }}
+        onClick={e => {
+          e.stopPropagation()
+          deletePalette(id)
+        }}
+      />
       <div className="colors">
         {miniColorBoxes}
       </div>
@@ -77,4 +101,5 @@ MiniPalette.propTypes = {
     color: PropTypes.string.isRequired,
   })).isRequired,
   handleClick: PropTypes.func.isRequired,
+  deletePalette: PropTypes.func.isRequired,
 }
