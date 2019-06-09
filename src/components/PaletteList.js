@@ -3,10 +3,11 @@ import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import MiniPalette from './MiniPalette'
+import { mediaUp, mediaDown } from './styles/sizes'
 
 const PaletteListRoot = styled.div`
   background-color: blue;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
@@ -16,6 +17,12 @@ const PaletteListRoot = styled.div`
     align-items: flex-start;
     flex-direction: column;
     flex-wrap: wrap;
+    ${mediaDown.xl`
+      width: 80%;
+    `}
+    ${mediaDown.xs`
+      width: 75%;
+    `}
   }
 
   & .nav {
@@ -35,7 +42,14 @@ const PaletteListRoot = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: repeat(3, 30%);
-    gap: 5%;
+    gap: 2.5rem;
+    ${mediaDown.md`
+      grid-template-columns: repeat(2, 50%);
+    `}
+    ${mediaDown.xs`
+      grid-template-columns: 100%;
+      gap: 1rem;
+    `}
   }
 `
 
