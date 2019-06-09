@@ -20,8 +20,8 @@ const PaletteMetaForm = ({
     changeStage('emoji')
   }
   const savePalette = emoji => {
-    console.log(emoji.native)
     handleSubmit(emoji.native)
+    changeStage('')
   }
   return (
     <div>
