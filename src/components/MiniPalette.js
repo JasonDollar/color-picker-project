@@ -49,6 +49,7 @@ const MiniPaletteContainer = styled.div`
     padding: 10px;
     z-index: 10;
     opacity: 0;
+    border-radius: 5px;
     /* transform: all .25s ease-in-out; */
   }
   &:hover .deleteIcon {
