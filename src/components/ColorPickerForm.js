@@ -1,43 +1,41 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import styled from 'styled-components'
 import PropTypes from 'prop-types'
-import { makeStyles } from '@material-ui/core/styles'
 import Button from '@material-ui/core/Button'
 import { ChromePicker } from 'react-color'
 import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator'
 
-const useStyles = makeStyles(theme => ({
-  picker: {
-    width: '100% !important',
-    marginTop: '2rem',
-  },
-  addColor: {
-    width: '100%',
-    padding: '1rem',
-    marginTop: '1rem',
-    fontSize: '2rem',
-  },
-  colorNameInput: {
-    width: '100%',
-    height: '70px',
-    
-  },
-}))
 
+const ColorPickerContainer = styled.aside`
+  .picker {
+    width: 100% !important;
+    margin-top: 2rem;
+  }
+  .addColor {
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+  .colorNameInput {
+    width: 100%;
+    height: 70px;
+  }
+`
 
 const ColorPickerForm = ({
   currentColor, setCurrentColor, addNewColor, newColorName, setNewColorName, paletteIsFull,
 }) => {
-  const classes = useStyles()
   return (
-    <Fragment>
+    <ColorPickerContainer>
       <ChromePicker
-        className={classes.picker}
+        className="picker"
         color={currentColor} 
         onChangeComplete={newColor => setCurrentColor(newColor.hex)}
       />
-        <ValidatorForm onSubmit={addNewColor}>
+        <ValidatorForm onSubmit={addNewColor} instantValidate={false}>
           <TextValidator 
-            className={classes.colorNameInput}
+            className="colorNameInput"
             value={newColorName}
             placeholder="Color Name"
             variant="filled"
@@ -47,7 +45,7 @@ const ColorPickerForm = ({
             errorMessages={['This field is required', 'Color name must be unique', 'Color already used']}
           />
           <Button 
-            className={classes.addColor}
+            className="addColor"
             type="submit"
             variant="contained"
             color="primary"
@@ -56,7 +54,7 @@ const ColorPickerForm = ({
           >{paletteIsFull ? 'Palette Full' : 'Add Color'}
           </Button>
         </ValidatorForm>
-    </Fragment>
+    </ColorPickerContainer>
   )
 }
 

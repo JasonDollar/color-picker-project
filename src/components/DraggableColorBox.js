@@ -1,9 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
+import chroma from 'chroma-js'
 import { SortableElement } from 'react-sortable-hoc'
 import DeleteIcon from '@material-ui/icons/Delete'
-import { mediaUp, mediaDown } from './styles/sizes'
+import { mediaDown } from './styles/sizes'
 
 const Container = styled.div`
   background-color: ${props => props.background};
@@ -39,7 +40,7 @@ const Container = styled.div`
     left: 0;
     bottom: 0;
     padding: 10px;
-    color: rgba(0,0,0,.5);
+    color: ${props => (chroma(props.background).luminance() <= 0.12 ? 'white' : '#00000080')};
     letter-spacing: 1px;
     text-transform: uppercase;
     font-size: 12px;
@@ -50,8 +51,6 @@ const Container = styled.div`
   .deleteIcon {
     transition: all .3s ease-in-out;
   }
-
-  
 `
 
 const DraggableColorBox = ({ color, name, handleClick }) => {

@@ -13,6 +13,7 @@ import DraggableColorList from './DraggableColorList'
 import PaletteFormNav from './PaletteFormNav'
 import ColorPickerForm from './ColorPickerForm'
 import NewPaletteFormStyles from './styles/NewPaletteFormStyles'
+import seedColors from '../seedColors'
 
 
 const NewPaletteForm = ({
@@ -21,7 +22,7 @@ const NewPaletteForm = ({
   const classes = NewPaletteFormStyles()
   const [open, setOpen] = useState(false)
   const [currentColor, setCurrentColor] = useState('teal')
-  const [colors, setColors] = useState(palettes[0].colors)
+  const [colors, setColors] = useState(seedColors[0].colors)
   const [newColorName, setNewColorName] = useState('')
   const [newPaletteName, setNewPaletteName] = useState('')
   const paletteIsFull = colors.length >= maxColors
@@ -34,9 +35,6 @@ const NewPaletteForm = ({
     ValidatorForm.addValidationRule('isColorUnique', value => (
       colors.every(item => item.color !== currentColor)
     ))
-    // ValidatorForm.addValidationRule('isPaletteNameUnique', value => (
-    //   palettes.every(item => item.paletteName.toLowerCase() !== newPaletteName.toLowerCase())
-    // ))
   })
 
   const onSortEnd = ({ oldIndex, newIndex }) => {
@@ -76,7 +74,8 @@ const NewPaletteForm = ({
   }
 
   const addRandomColor = () => {
-    const allColors = palettes.map(item => item.colors).flat()
+    const allColors = seedColors.map(item => item.colors).flat()
+    if (allColors.length <= 0) return
     const rand = Math.floor(Math.random() * allColors.length)
     const randomColor = allColors[rand]
     const isAlreadyTaken = colors.findIndex(item => item.name.toLowerCase() === randomColor.name.toLowerCase())
@@ -86,8 +85,6 @@ const NewPaletteForm = ({
     return setColors([...colors, randomColor])
   }
 
-  
-  
   return (
     <div className={classes.root}>
       <PaletteFormNav

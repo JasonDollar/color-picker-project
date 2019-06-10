@@ -5,7 +5,6 @@ import {
   Select, MenuItem, Snackbar, IconButton, 
 } from '@material-ui/core'
 import CloseIcon from '@material-ui/icons/Close'
-import styled from 'styled-components'
 import Slider from 'rc-slider'
 import 'rc-slider/assets/index.css'
 import { Header, SliderContainer } from './styles/NavbarStyles'
@@ -35,10 +34,12 @@ const Navbar = ({
         </div>
       )}
       <div value={format} className="select-container">
-        <Select onChange={e => {
-          handleSelectChange(e)
-          toggleOpenSnackbar(true)
-        }}
+        <Select
+          value={format}
+          onChange={e => {
+            handleSelectChange(e)
+            toggleOpenSnackbar(true)
+          }}
         >
           <MenuItem value="hex">HEX - #ffffff</MenuItem>
           <MenuItem value="rgb">RGB - rgb(255, 255, 255) </MenuItem>

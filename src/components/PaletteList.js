@@ -40,6 +40,7 @@ const PaletteList = ({ palettes, deletePalette, ...props }) => {
   }
   const closeDialog = () => toggleDeleteDialog(false)
   const goToPalette = id => props.history.push(`/palette/${id}`)
+
   return (
     <PaletteListRoot>
       <FadeAnimation />
@@ -51,12 +52,9 @@ const PaletteList = ({ palettes, deletePalette, ...props }) => {
         <TransitionGroup className="palettes">
             {palettes && palettes.map(item => (
               <CSSTransition key={item.id} classNames="fade" timeout={500}>
-
                 <MiniPalette {...item} handleClick={goToPalette} deletePalette={deletePalette} openDialog={openDialog} />
               </CSSTransition>
             ))}
-
-
         </TransitionGroup>
       </div>
       <Dialog open={deleteDialogOpen} aria-labelledby="delete-dialog-title" onClose={closeDialog}>

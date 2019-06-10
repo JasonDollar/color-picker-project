@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import Navbar from './Navbar'
 import PaletteFooter from './PaletteFooter'
-import Container from './styles/PaletteStyles'
 
 import ColorBox from './ColorBox'
 

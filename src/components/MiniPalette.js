@@ -50,12 +50,10 @@ const MiniPaletteContainer = styled.div`
     z-index: 10;
     opacity: 0;
     border-radius: 5px;
-    /* transform: all .25s ease-in-out; */
   }
   &:hover .deleteIcon {
     opacity: 1;
   }
-
 `
 
 const MiniColor = styled.div`
@@ -63,7 +61,6 @@ const MiniColor = styled.div`
   width: 100%;
   margin: 0 auto;
   position: relative;
-  /* margin-bottom: -3.5px; */
   background: ${props => props.background};
 `
 
@@ -91,7 +88,11 @@ const MiniPalette = ({
   )
 }
 
-export default MiniPalette
+const areEqual = (prevProps, nextProps) => {
+  return prevProps.id === nextProps.id
+}
+
+export default React.memo(MiniPalette, areEqual)
 
 MiniPalette.propTypes = {
   paletteName: PropTypes.string.isRequired,

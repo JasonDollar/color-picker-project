@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mediaUp, mediaDown } from './sizes'
+import { mediaDown } from './sizes'
 
 export const Header = styled.header`
   display: flex;
@@ -35,7 +35,7 @@ export const SliderContainer = styled.div`
   width: 340px;
   margin: 0 10px;
   display: inline-block;
-  ${mediaDown.md`
+  ${mediaDown.sm`
     width: 150px;
   `}
 

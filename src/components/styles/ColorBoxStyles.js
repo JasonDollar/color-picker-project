@@ -1,6 +1,6 @@
 import chroma from 'chroma-js'
 import styled from 'styled-components'
-import { mediaUp, mediaDown } from './sizes'
+import { mediaDown } from './sizes'
 
 const ColorBoxContainer = styled.div`
   width: 20%;

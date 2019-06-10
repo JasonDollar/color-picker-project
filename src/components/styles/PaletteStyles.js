@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { mediaUp, mediaDown } from './sizes'
+import { mediaDown } from './sizes'
 
 const Container = styled.div`
   min-height: 100vh;

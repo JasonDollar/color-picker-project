@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
 import ColorBox from './ColorBox'
 import Navbar from './Navbar'
 import PaletteFooter from './PaletteFooter'
@@ -14,16 +13,16 @@ const SinglePalette = ({ palette, colorId }) => {
   const gatherShades = (paletteArr, colorToFilterBy) => {
     let shades = []
     let allColors = paletteArr.colors
-    Object.keys(allColors).map(key => {
+    Object.keys(allColors).map(key => (
       shades = [
         ...shades, 
         ...allColors[key].filter(item => item.id === colorToFilterBy),
       ]
-    })
+      
+    ))
     return shades.slice(1)
   }
   const colors = gatherShades(palette, colorId)
-  console.log(colors)
   return (
     <Container>
       <Navbar format={format} handleSelectChange={e => setFormat(e.target.value)} showingAllColors={false} />

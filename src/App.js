@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import seedColors from './seedColors'
 import PaletteList from './components/PaletteList'
@@ -15,8 +15,6 @@ const AppContainer = styled.div`
   min-height: 100vh;
   overflow-x: hidden;
 `
-
-
 
 function App() {
   const [palettes, setPalettes] = useState(() => JSON.parse(localStorage.getItem('palettes')) || seedColors)
